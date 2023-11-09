@@ -97,7 +97,7 @@ func (r *Repository) APTConfigLine() string {
 		res += "deb "
 	}
 	if strings.TrimSpace(r.Options) != "" {
-		res += "[" + r.Options + "]"
+		res += "[" + r.Options + "] "
 	}
 	res += r.URI + " " + r.Distribution + " " + r.Components
 	if strings.TrimSpace(r.Comment) != "" {
@@ -230,7 +230,7 @@ func RemoveRepository(repo *Repository, configFolderPath string) error {
 	for scanner.Scan() {
 		line := scanner.Text()
 		r := parseAPTConfigLine(line)
-		if r!= nil && r.Equals(repo) {
+		if r != nil && r.Equals(repo) {
 			// Filter repo configs that match the repo to be removed
 			continue
 		}
